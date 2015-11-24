@@ -1,0 +1,20 @@
+ <%= erb :'_header' %>
+
+     <!-- Profile button -->
+  <form style="text-align:left;" action="/users/<%=current_user.id %>/edit" method="get">
+    <input type="submit" value="Edit Profile">
+  </form>
+
+
+   <% @user_posts.each do |post| %>
+   <p> <%= post.title %> </p>
+     <h4> <%= post.text %> </h4>
+      <%end %>
+
+<br>
+
+
+ <% @user_comments.each do |comment| %>
+   <p> <%= comment.text %> </p>
+     <h4> <%= comment.post %> </h4>
+      <%end %>

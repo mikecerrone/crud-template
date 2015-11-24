@@ -1,0 +1,11 @@
+<%= erb :_header %>
+
+<h1>Log on in! </h1>
+
+<form action="/users/login" method="post">
+  <p>username</p>
+  <input type="text" name="username">
+  <p>password</p>
+  <input type="password" name="password">
+  <p><input type="submit" value="LOG IN"></p>
+</form>

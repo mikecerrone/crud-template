@@ -1,0 +1,35 @@
+    <!-- Home button -->
+  <form style="text-align:left;" action="/posts" method="get">
+    <input type="submit" value="Home, sweet home">
+  </form>
+
+<!-- IF user is logged in  -->
+<% if current_user %>
+<h2> Hello <%= current_user.username %> </h2>
+
+      <!-- Profile button -->
+  <form style="text-align:right;" action="/users/<%=current_user.id %>" method="get">
+    <input type="submit" value="Profile">
+  </form>
+      <!-- Logout button -->
+  <form style="text-align:right;" action="/users/<%= current_user.id %>" method="post">
+    <input type="submit" value="Log Out">
+  </form>
+
+<!-- IF user is not logged in -->
+
+<% else %>
+
+
+        <!-- Create account button -->
+  <form style="text-align:right;" action="/users/new" method="get">
+    <input type="submit" value="Register">
+  </form>
+
+        <!-- Login Button -->
+  <form style="text-align:right;" action="/users/login" method="get">
+    <input type="submit" value="Log in">
+ </form>
+
+
+<% end %>

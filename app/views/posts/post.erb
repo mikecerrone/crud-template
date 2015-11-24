@@ -1,0 +1,19 @@
+ <%= erb :'_header' %>
+
+<h2><%= @post.title %></h2>
+   <p><%=@post.text%></p>
+<br>
+     <% @comments.each do |comment| %>
+   <p> <%= comment.user.username %> </p>
+     <h4> <%= comment.text %> </h4>
+      <%end %>
+
+<br>
+<form action='/posts/<%= @post.id%>/comment' method='post'>
+  <label for="name">Comment: </label>
+  <input type="text" name="text">
+  <input type="submit" value="Add Comment">
+</form>
+
+
+

@@ -1,4 +1,8 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
+	has_many :posts
+	has_many :comments
 	validates :username, :email, :password_hash, presence: true
 	validates :email, uniqueness: true
 

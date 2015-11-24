@@ -1,0 +1,14 @@
+ <%= erb :'_header' %>
+<h1 > HACKER NEWS Y'ALL </h1>
+<div id='addPost'></div>
+
+<form action='/posts/new' method='get'>
+  <label id='createPostLabel' for="name">Create a new Post: </label>
+  <input id='createPost' type="submit" value="Create Post">
+</form>
+
+<% @posts.each do |post| %>
+        <ul>
+          <li> <a href="/posts/<%=post.id%>"> <%=post.title%> </a> </li>
+        </ul>
+      <% end %>
