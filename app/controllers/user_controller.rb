@@ -1,8 +1,6 @@
-#show all users
-get '/users' do
-	@users = User.all
-	erb :'/users/user_index'
-end
+
+
+########### CREATE NEW USER #############
 
 #new user form
 get '/users/new' do
@@ -23,35 +21,12 @@ post '/users' do
 	end
 end
 
+########### USER EDIT #############
+
 #get edit page
 get '/users/:id/edit' do
 	@user = User.find(params[:id])
 	erb :'/users/user_edit'
-end
-
-get '/users/login' do
- erb :'/users/user_login'
-end
-
-#login user
-post '/users/login' do
-  @user = User.find_by_username(params[:username])
-  if @user && @user.password == params[:password]
-    session[:id] = @user.id
-    redirect "/users/#{@user.id}"
-  else
-    redirect '/'
-
-  end
-end
-
-#show a user
-get '/users/:id' do
-	@user = User.find(params[:id])
-	@user_posts = @user.posts
-	@user_comments = @user.comments
-	erb :'users/user_profile'
-
 end
 
 #submit user edit
@@ -67,12 +42,49 @@ put '/users/:id' do
 	end
 end
 
+########### LOGIN / LOGOUT #############
+
+#user login form
+get '/users/login' do
+ erb :'/users/user_login'
+end
+
+#login user
+post '/users/login' do
+  @user = User.find_by_username(params[:username])
+  if @user && @user.password == params[:password]
+    session[:id] = @user.id
+    redirect "/users/#{@user.id}"
+  else
+    redirect '/'
+  end
+end
+
 #logout user
 post '/users/:id' do
 	session[:id] = nil
 	current_user = nil
 	redirect '/'
 end
+
+
+########### SHOW #############
+
+#show a user
+get '/users/:id' do
+	@user = User.find(params[:id])
+	@user_posts = @user.posts
+	@user_comments = @user.comments
+	erb :'users/user_profile'
+end
+
+#show all users
+get '/users' do
+	@users = User.all
+	erb :'/users/user_index'
+end
+
+########### DELETE #############
 
 #delete user
 delete '/users/:id' do

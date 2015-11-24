@@ -43,6 +43,10 @@ post '/posts/:id/comment' do
   end
 end
 
+before '/posts/:id/edit' do
+  unless current_user.posts == params[:id]
+end
+end
 
 #get edit page
 get '/posts/:id/edit' do
